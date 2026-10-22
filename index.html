@@ -6,7 +6,7 @@
 <meta property="og:title" content="Chok Chok Social">
 <meta property="og:description" content="Agencia de comunicación 360°, bilingüe, entre Nueva York y Santiago.">
 <meta property="og:image" content="img/a001-001.jpg">
-<meta name="cc-version" content="20261021225808">
+<meta name="cc-version" content="20261021233002">
 <script>
 /* Auto-actualización: si hay una versión publicada más nueva, recarga la página sola. */
 (function(){
@@ -723,13 +723,16 @@ if(matchMedia("(hover:hover) and (pointer:fine)").matches){
 /* services accordion */
 const svcV=$("#svc .svc-visual"),svcL=$("#svc .svc-list");
 function renderSvc(){
-  svcV.innerHTML=SERV.map((s,i)=>`<img src="${s.img}" alt="" loading="lazy" class="${i===openSvc?"on":""}">`).join("");
+  svcV.innerHTML=SERV.map((s,i)=>`<img src="${s.img}" alt="" loading="lazy" class="${i===(openSvc<0?0:openSvc)?"on":""}">`).join("");
   svcL.innerHTML=SERV.map((s,i)=>`<div class="svc-item${i===openSvc?" open":""}">
     <button type="button" aria-expanded="${i===openSvc}" aria-controls="svc-${i}" data-svc="${i}"><h3>${s.t}</h3><span class="plus" aria-hidden="true"></span></button>
     <div class="svc-body" id="svc-${i}" role="region"><div><div class="inner"><figure class="svc-pic"><img src="${s.img}" alt="" loading="lazy"></figure><span class="cap soft">${s.area}</span><p>${s[lang]}</p><ul>${s.tags.map(t=>`<li>${t}</li>`).join("")}</ul>
     ${s.go?`<a class="link" href="#trabajo" data-go="${s.go}">${T[lang].viewWork}: ${KIND[s.go][lang]} <span>→</span></a>`:""}</div></div></div></div>`).join("");
 }
-let openSvc=0;
+let openSvc=-1;
+svcL.addEventListener("pointerover",e=>{const b=e.target.closest("[data-svc]");if(!b||!matchMedia("(hover:hover)").matches)return;
+  $$(".svc-visual img").forEach((im,j)=>im.classList.toggle("on",j===+b.dataset.svc))});
+svcL.addEventListener("pointerleave",()=>{$$(".svc-visual img").forEach((im,j)=>im.classList.toggle("on",j===(openSvc<0?0:openSvc)))});
 svcL.addEventListener("click",e=>{
   const g=e.target.closest("[data-go]");if(g){filter=g.dataset.go;renderTabs();renderWork(true);return}
   const b=e.target.closest("[data-svc]");if(!b)return;const i=+b.dataset.svc;openSvc=openSvc===i?-1:i;

@@ -6,6 +6,23 @@
 <meta property="og:title" content="Chok Chok Social">
 <meta property="og:description" content="Agencia de comunicación 360°, bilingüe, entre Nueva York y Santiago.">
 <meta property="og:image" content="img/a001-001.jpg">
+<meta name="cc-version" content="20261021225728">
+<script>
+/* Auto-actualización: si hay una versión publicada más nueva, recarga la página sola. */
+(function(){
+  var mine=document.querySelector('meta[name="cc-version"]').content,busy=false;
+  function check(){
+    if(busy)return;busy=true;
+    fetch(location.pathname+"?cc="+Date.now(),{cache:"no-store"}).then(function(r){return r.text()}).then(function(t){
+      var m=t.match(/name="cc-version" content="([^"]+)"/);
+      if(m&&m[1]!==mine)location.reload();
+    }).catch(function(){}).finally(function(){busy=false});
+  }
+  addEventListener("pageshow",check);
+  document.addEventListener("visibilitychange",function(){if(!document.hidden)check()});
+  setInterval(function(){if(!document.hidden)check()},60000);
+})();
+</script>
 <title>ChokChok</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Agencia de comunicación 360°, bilingüe, entre Nueva York y Santiago.">

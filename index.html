@@ -6,7 +6,7 @@
 <meta property="og:title" content="Chok Chok Social">
 <meta property="og:description" content="Agencia de comunicación 360°, bilingüe, entre Nueva York y Santiago.">
 <meta property="og:image" content="img/a001-001.jpg">
-<meta name="cc-version" content="20261113234544">
+<meta name="cc-version" content="20261113234659">
 <script>
 /* Auto-actualización: si hay una versión publicada más nueva, recarga la página sola. */
 (function(){
@@ -161,15 +161,6 @@ p{margin:0}
 @keyframes rise{from{transform:translateY(36px);opacity:0}to{transform:none;opacity:1}}
 @keyframes fade{from{opacity:0}to{opacity:1}}
 
-/* ---------- ticker ---------- */
-.ticker{border-block:1px solid var(--line);overflow:hidden;padding-block:18px;white-space:nowrap}
-.ticker .track{display:inline-flex;gap:48px;padding-left:48px;animation:tick 70s linear infinite}
-.ticker:hover .track{animation-play-state:paused}
-.ticker span{font-size:clamp(1.1rem,1.7vw,1.5rem);text-transform:uppercase;letter-spacing:.06em;display:inline-flex;align-items:center;gap:48px}
-.ticker span::after{content:"✱";font-size:.6em;color:var(--wine)}
-.ticker span:nth-child(3n+2){font-family:var(--serif);font-style:italic;text-transform:none;letter-spacing:0;font-size:clamp(1.3rem,2vw,1.75rem)}
-@keyframes tick{to{transform:translateX(-50%)}}
-@media (prefers-reduced-motion:reduce){.ticker .track{animation:none}}
 
 /* ---------- section shell ---------- */
 section{scroll-margin-top:72px}
@@ -475,9 +466,6 @@ dialog.closing::backdrop{opacity:0;transition:opacity .38s}
     </div>
   </section>
 
-  <div class="ticker" aria-label="Marcas con las que trabajamos">
-    <div class="track" id="ticker"></div>
-  </div>
 
   <!-- SERVICES -->
   <section class="sec" id="servicios">
@@ -659,10 +647,6 @@ const T={es:{all:"Todo",open:"Ver caso",of:"de",prevCase:"← Anterior",nextCase
 let lang="es";
 try{const s=localStorage.getItem("cc-lang");if(s==="en"||s==="es")lang=s}catch(e){}
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
-
-/* ticker */
-const brands=["Victoria's Secret","VIK","MILØ","Falabella","Ford","L'Occitane","Birkenstock","On","Camper","ISDIN","Uriage","Veus Cosmetics","Dermotienda","Petrabax","Soot","Opaline","AMA Time","Blockstore","Astro Estrella","Snobby","Wonder & Wise","Somos Cala","Montesacro","Carolina Flores","Rumbos"];
-$("#ticker").innerHTML=[...brands,...brands].map(b=>`<span>${b}</span>`).join("");
 
 /* clocks */
 const tick=()=>$$("[data-tz]").forEach(el=>{el.textContent=new Intl.DateTimeFormat("es-CL",{hour:"2-digit",minute:"2-digit",hour12:false,timeZone:el.dataset.tz}).format(new Date())});

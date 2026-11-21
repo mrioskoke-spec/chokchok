@@ -6,7 +6,7 @@
 <meta property="og:title" content="Chok Chok Social">
 <meta property="og:description" content="Agencia de comunicación y marketing digital 360°, bilingüe, entre Nueva York y Santiago.">
 <meta property="og:image" content="../img/b-hero-wide.jpg">
-<meta name="cc-version" content="20261121114524">
+<meta name="cc-version" content="20261121114738">
 <script>
 (function(){
   var mine=document.querySelector('meta[name="cc-version"]').content,busy=false;
@@ -1185,6 +1185,10 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
 /* tarjeta de servicios más alta (3:4) para que el feed se vea completo */
 #servicios.csvc .svc-visual{aspect-ratio:507/706;max-height:none;top:84px}
 #servicios.csvc .svc-pic{aspect-ratio:3/4}
+/* marca escrita a mano en la franja blanca de la tarjeta */
+#servicios.csvc .svc-visual::after{content:attr(data-note);position:absolute;left:0;right:0;bottom:-44px;text-align:center;font-family:var(--hand);font-size:2rem;line-height:1;color:var(--ink);z-index:2;transition:opacity .4s}
+#servicios.csvc .svc-pic{position:relative;border-bottom-width:40px}
+#servicios.csvc .svc-pic figcaption{position:absolute;left:0;right:0;bottom:-34px;text-align:center;font-family:var(--hand);font-size:1.6rem;line-height:1;color:var(--ink)}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 </head>
@@ -1531,12 +1535,12 @@ const REELS=[
 
 const AREA={acc:{es:"Cuentas y comunicaciones",en:"Accounts & Communications"},prod:{es:"Producción, eventos y creadores de contenido",en:"Production, Events & Content Creators"}};
 const SERV=[
- {t:{es:"Gestión de redes sociales",en:"Social media management"},area:"acc",img:"../img/svc-birkenstock-feed.jpg",es:"Estrategia, planificación y gestión diaria de redes sociales: calendarios, comunidad y reportes.",en:"Strategy, planning and day-to-day management of social channels: calendars, community and reporting.",tags:{es:["Instagram","LinkedIn","TikTok","Comunidad"],en:["Instagram","LinkedIn","TikTok","Community"]},go:"soc"},
- {t:{es:"Creación de contenido",en:"Content creation"},area:"acc",img:"../img/c041-177.jpg",es:"Conceptualización y producción de contenido visual y editorial, con dirección creativa propia.",en:"Concept and production of visual and editorial content, with in-house creative direction.",tags:{es:["Foto","Video","Copy","Dirección creativa"],en:["Photo","Video","Copy","Creative direction"]},go:"con"},
- {t:{es:"Marketing de influencia",en:"Influencer marketing"},area:"prod",img:"../img/c027-132.jpg",es:"Estrategias de influencia auténticas y alineadas a la marca: casting, negociación, gestión y reportes.",en:"Authentic, on-brand influence strategies: casting, negotiation, management and reporting.",tags:{es:["Casting","Negociación","Gestión","Reportes"],en:["Casting","Negotiation","Management","Reporting"]},go:"inf"},
- {t:{es:"Producción de eventos",en:"Event planning"},area:"prod",img:"../img/c015-069.jpg",es:"Eventos, activaciones y experiencias de marca, de la idea al último detalle de la mesa.",en:"Events, activations and brand experiences, from the idea to the last detail on the table.",tags:{es:["Activaciones","Lanzamientos","Cenas","Producción"],en:["Activations","Launches","Dinners","Production"]},go:"ev"},
- {t:{es:"Contenido pagado",en:"Paid content"},area:"acc",img:"../img/a005-007.jpg",es:"Contenido pensado para performance y amplificación en medios pagados.",en:"Content built for performance and paid amplification.",tags:{es:["Meta Ads","Performance","Amplificación"],en:["Meta Ads","Performance","Amplification"]}},
- {t:{es:"Rebranding",en:"Re-branding"},area:"acc",img:"../img/a004-006.jpg",es:"Redefinición de identidad y ajustes estratégicos de marca.",en:"Identity redefinition and strategic brand adjustments.",tags:{es:["Identidad","Posicionamiento","Tono"],en:["Identity","Positioning","Tone"]}}];
+ {t:{es:"Gestión de redes sociales",en:"Social media management"},area:"acc",img:"../img/svc-birkenstock-feed.jpg",cap:"Birkenstock Chile",es:"Estrategia, planificación y gestión diaria de redes sociales: calendarios, comunidad y reportes.",en:"Strategy, planning and day-to-day management of social channels: calendars, community and reporting.",tags:{es:["Instagram","LinkedIn","TikTok","Comunidad"],en:["Instagram","LinkedIn","TikTok","Community"]},go:"soc"},
+ {t:{es:"Creación de contenido",en:"Content creation"},area:"acc",img:"../img/c041-177.jpg",cap:"Soot",es:"Conceptualización y producción de contenido visual y editorial, con dirección creativa propia.",en:"Concept and production of visual and editorial content, with in-house creative direction.",tags:{es:["Foto","Video","Copy","Dirección creativa"],en:["Photo","Video","Copy","Creative direction"]},go:"con"},
+ {t:{es:"Marketing de influencia",en:"Influencer marketing"},area:"prod",img:"../img/c027-132.jpg",cap:"Petrabax",es:"Estrategias de influencia auténticas y alineadas a la marca: casting, negociación, gestión y reportes.",en:"Authentic, on-brand influence strategies: casting, negotiation, management and reporting.",tags:{es:["Casting","Negociación","Gestión","Reportes"],en:["Casting","Negotiation","Management","Reporting"]},go:"inf"},
+ {t:{es:"Producción de eventos",en:"Event planning"},area:"prod",img:"../img/c015-069.jpg",cap:"Veus Cosmetics",es:"Eventos, activaciones y experiencias de marca, de la idea al último detalle de la mesa.",en:"Events, activations and brand experiences, from the idea to the last detail on the table.",tags:{es:["Activaciones","Lanzamientos","Cenas","Producción"],en:["Activations","Launches","Dinners","Production"]},go:"ev"},
+ {t:{es:"Contenido pagado",en:"Paid content"},area:"acc",img:"../img/a005-007.jpg",cap:"Chok Chok Social",es:"Contenido pensado para performance y amplificación en medios pagados.",en:"Content built for performance and paid amplification.",tags:{es:["Meta Ads","Performance","Amplificación"],en:["Meta Ads","Performance","Amplification"]}},
+ {t:{es:"Rebranding",en:"Re-branding"},area:"acc",img:"../img/a004-006.jpg",cap:"Chok Chok Social",es:"Redefinición de identidad y ajustes estratégicos de marca.",en:"Identity redefinition and strategic brand adjustments.",tags:{es:["Identidad","Posicionamiento","Tono"],en:["Identity","Positioning","Tone"]}}];
 
 const TEAM=[["trinidad-bn","Trinidad Id",{es:"Fundadora y directora de marketing",en:"Founder & Marketing Director"}],["gala","Gala Germain",{es:"Directora senior de cuentas",en:"Senior Account Director"}],["pilar","Pilar Undurraga",{es:"Directora de producción y eventos",en:"Production & Events Director"}],["anais","Anais Johnson",{es:"Estratega de diseño para redes sociales",en:"Social Media Design Strategist"}],["valentina","Valentina Puchi",{es:"Coordinadora de contenido digital y creadores",en:"Digital Content & Creators Coordinator"}],["magdalena-bn","Magdalena Rios",{es:"Estratega de diseño para redes sociales",en:"Social Media Design Strategist"}],["mariajesus-bn","María Jesús Olivares",{es:"Coordinadora de producción",en:"Production Coordinator"}]];
 
@@ -1612,11 +1616,12 @@ if(matchMedia("(hover:hover) and (pointer:fine)").matches){
 
 /* services accordion */
 const svcV=$("#svc .svc-visual"),svcL=$("#svc .svc-list");
+new MutationObserver(()=>{const o=svcV.querySelector("img.on");svcV.dataset.note=o?o.dataset.cap||"":""}).observe(svcV,{subtree:true,childList:true,attributes:true,attributeFilter:["class"]});
 function renderSvc(){
-  svcV.innerHTML=SERV.map((s,i)=>`<img src="${s.img}" alt="" loading="lazy" class="${i===(openSvc<0?0:openSvc)?"on":""}">`).join("");
+  svcV.innerHTML=SERV.map((s,i)=>`<img src="${s.img}" alt="" loading="lazy" data-cap="${s.cap||""}" class="${i===(openSvc<0?0:openSvc)?"on":""}">`).join("");
   svcL.innerHTML=SERV.map((s,i)=>`<div class="svc-item${i===openSvc?" open":""}">
     <button type="button" aria-expanded="${i===openSvc}" aria-controls="svc-${i}" data-svc="${i}"><h3>${mixT(tx(s.t))}</h3><span class="plus" aria-hidden="true"></span></button>
-    <div class="svc-body" id="svc-${i}" role="region"><div><div class="inner"><figure class="svc-pic"><img src="${s.img}" alt="" loading="lazy"></figure><span class="cap soft">${AREA[s.area][lang]}</span><p>${s[lang]}</p><ul>${s.tags[lang].map(t=>`<li>${t}</li>`).join("")}</ul>
+    <div class="svc-body" id="svc-${i}" role="region"><div><div class="inner"><figure class="svc-pic"><img src="${s.img}" alt="" loading="lazy"><figcaption>${s.cap||""}</figcaption></figure><span class="cap soft">${AREA[s.area][lang]}</span><p>${s[lang]}</p><ul>${s.tags[lang].map(t=>`<li>${t}</li>`).join("")}</ul>
     <div class="svc-links">${s.go?`<a class="link" href="#portafolio" data-go="${s.go}">${T[lang].viewWork}: ${KIND[s.go][lang]} <span>→</span></a>`:""}<a class="link" href="#contacto">${lang==="en"?"Quote this service":"Cotizar este servicio"} <span>→</span></a></div></div></div></div></div>`).join("");
 }
 let openSvc=-1;

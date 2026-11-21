@@ -6,7 +6,7 @@
 <meta property="og:title" content="Chok Chok Social">
 <meta property="og:description" content="Agencia de comunicación y marketing digital 360°, bilingüe, entre Nueva York y Santiago.">
 <meta property="og:image" content="../img/b-hero-wide.jpg">
-<meta name="cc-version" content="20261121112854">
+<meta name="cc-version" content="20261121113141">
 <script>
 (function(){
   var mine=document.querySelector('meta[name="cc-version"]').content,busy=false;
@@ -1126,6 +1126,42 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
 /* portada: logo un poco más chico */
 .cmast-logo{width:72%;max-width:1040px}
 @media(max-width:820px){.cmast-logo{width:80%}}
+
+/* ---------- portada en carrusel (logo grande + video Coniglio) ---------- */
+.chero{position:relative;height:min(86svh,52vw);min-height:460px;background:var(--espresso);overflow:hidden}
+.chero>.slide{position:absolute;inset:0;margin:0;height:auto;min-height:0;opacity:0;visibility:hidden;transition:opacity 1.1s var(--ease),visibility 0s linear 1.1s}
+.chero>.slide.is-on{opacity:1;visibility:visible;transition:opacity 1.1s var(--ease),visibility 0s}
+.chero>.cmast{height:auto}
+.chero>.cbanner{display:flex}
+.chero .cb-in{padding-bottom:clamp(70px,8vw,110px)}
+.chero .cb-bottom{gap:16px}
+.chero .cb-bottom .pill-o{margin-top:6px}
+/* indicadores 01 / 02 con barra de tiempo */
+.hero-nav{position:absolute;left:clamp(16px,3vw,40px);bottom:clamp(18px,2.4vw,30px);z-index:5;display:flex;gap:18px}
+.hero-nav button{display:grid;gap:6px;color:rgba(251,248,242,.7);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-align:left;padding:6px 0}
+.hero-nav button[aria-selected="true"]{color:#FBF8F2}
+.hero-nav i{display:block;width:46px;height:2px;background:rgba(251,248,242,.3);position:relative;overflow:hidden}
+.hero-nav i::after{content:"";position:absolute;inset:0;background:#FBF8F2;transform:scaleX(0);transform-origin:left}
+.hero-nav button[aria-selected="true"] i::after{transform:scaleX(1)}
+.hero-nav button.run i::after{animation:heroBar 7s linear both}
+@keyframes heroBar{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.hero-nav button:focus-visible{outline-color:#FBF8F2}
+/* la marca de la esquina no choca con los indicadores */
+.chero .cmast-r{bottom:clamp(18px,2.4vw,30px)}
+@media(max-width:820px){
+  .chero{height:82svh;min-height:520px}
+  .chero>.cmast{padding:0}
+  .chero .cmast-r{display:none}
+}
+@media(max-width:700px){
+  .chero .cb-hand{font-size:4.6rem}
+  .chero .cb-def{font-size:.9rem}
+}
+/* banner 2: "Chok Chok" a mano con "social" debajo, y solo la definición */
+.chero .cb-hand{display:inline-grid;justify-items:end}
+.chero .cb-hand small{font-family:var(--sans);font-size:.13em;font-weight:500;letter-spacing:.5em;text-transform:uppercase;margin:.35em .1em 0 0;transform:rotate(8deg);transform-origin:right}
+.chero .cb-def{font-family:var(--serif);font-size:clamp(1.5rem,2.3vw,2.1rem);line-height:1.2;color:#FBF8F2;max-width:30ch}
+@media(max-width:700px){.chero .cb-def{font-size:1.35rem}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 </head>
@@ -1152,7 +1188,8 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
   </div>
 </header>
 
-<section class="cmast" id="mast">
+<section class="chero" id="mast" aria-roledescription="carrusel" aria-label="Portada">
+  <div class="slide cmast is-on" data-i="0">
   <picture class="cmast-bg" aria-hidden="true"><source media="(max-width:700px)" srcset="../img/b-hero-tall.jpg"><img src="../img/b-hero-wide.jpg" alt="" fetchpriority="high"></picture>
   <h1 class="cmast-logo"><span class="sr">Chok Chok Social</span></h1>
   <div class="cmast-cta">
@@ -1160,7 +1197,48 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
     <a class="pill-o light" href="#proyectos"><span data-en="See our work">Ver trabajo</span></a>
   </div>
   <span class="cmast-r" data-en="New York · Santiago">Nueva York · Santiago</span>
+</div>
+  <div class="slide cbanner" data-i="1" aria-hidden="true">
+    <video class="cb-video" muted loop playsinline preload="none" aria-hidden="true"
+      poster="../video/coniglio-banner.jpg" data-wide="../video/coniglio-banner.mp4" data-tall="../video/coniglio-banner-v.mp4"
+      data-pw="../video/coniglio-banner.jpg" data-pt="../video/coniglio-banner-v.jpg"></video>
+    <div class="wrap cb-in">
+      <span class="cb-hand" aria-hidden="true">Chok Chok<small>social</small></span>
+      <div class="cb-bottom">
+        <p class="cb-def" data-en="A bilingual 360° communication and marketing agency, between New York and Santiago, bringing together strategy, content, influence and events.">Agencia bilingüe de comunicación y marketing 360°, entre Nueva York y Santiago, que une estrategia, contenido, influencia y eventos.</p>
+        
+        
+      </div>
+      <span class="cb-credit">Coniglio, 2026</span>
+    </div>
+  </div>
+  <div class="hero-nav" role="tablist" aria-label="Banners de portada">
+    <button type="button" role="tab" data-go="0" aria-selected="true"><span>01</span><i></i></button>
+    <button type="button" role="tab" data-go="1" aria-selected="false"><span>02</span><i></i></button>
+  </div>
 </section>
+<script>(()=>{
+  const h=document.querySelector(".chero");if(!h)return;
+  const slides=[...h.querySelectorAll(".slide")],tabs=[...h.querySelectorAll(".hero-nav button")],v=h.querySelector(".cb-video");
+  const mq=matchMedia("(max-width:700px)"),still=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const setSrc=()=>{if(!v)return;const t=mq.matches,src=t?v.dataset.tall:v.dataset.wide;v.poster=t?v.dataset.pt:v.dataset.pw;if(v.getAttribute("src")!==src)v.src=src};
+  setSrc();mq.addEventListener("change",setSrc);
+  let cur=0,timer=null,vis=true;const DUR=7000;
+  const syncVideo=()=>{if(!v)return;if(cur===1&&vis&&!still){v.play().catch(()=>{})}else v.pause()};
+  const show=i=>{cur=(i+slides.length)%slides.length;
+    slides.forEach((s,k)=>{s.classList.toggle("is-on",k===cur);s.setAttribute("aria-hidden",k!==cur)});
+    tabs.forEach((t,k)=>{t.setAttribute("aria-selected",k===cur);t.classList.remove("run");if(k===cur){void t.offsetWidth;if(!still)t.classList.add("run")}});
+    syncVideo();restart()};
+  const restart=()=>{clearTimeout(timer);if(!still&&vis&&!document.hidden)timer=setTimeout(()=>show(cur+1),DUR)};
+  tabs.forEach((t,k)=>t.addEventListener("click",()=>show(k)));
+  if(v){v.addEventListener("canplay",syncVideo)}
+  let x0=null;h.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});
+  h.addEventListener("touchend",e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)show(cur+(dx<0?1:-1));x0=null});
+  document.addEventListener("visibilitychange",()=>{syncVideo();restart()});
+  if("IntersectionObserver" in window)new IntersectionObserver(([e])=>{vis=e.isIntersecting;syncVideo();restart()},{threshold:.2}).observe(h);
+  h.addEventListener("click",e=>{if(e.target.closest("[data-open-coniglio]")){const c=document.querySelector('#cstrip1 [aria-label="Coniglio"]')||document.querySelector('#pgrid [aria-label$="Coniglio"]');if(c)c.click()}});
+  show(0);
+})();</script>
 
 
 
@@ -1266,27 +1344,6 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
       <button class="cs-arrow next" type="button" aria-label="Siguiente"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M6 3l5 5-5 5"/></svg></button>
     </div>
   </section>
-
-  <!-- BANNER DE VIDEO -->
-  <section class="cbanner" aria-label="Chok Chok Social">
-    <video class="cb-video" muted loop playsinline autoplay preload="metadata" aria-hidden="true"
-      poster="../video/coniglio-banner.jpg" data-wide="../video/coniglio-banner.mp4" data-tall="../video/coniglio-banner-v.mp4"
-      data-pw="../video/coniglio-banner.jpg" data-pt="../video/coniglio-banner-v.jpg"></video>
-    <div class="wrap cb-in">
-      <span class="cb-hand" aria-hidden="true">Chok Chok</span>
-      <div class="cb-bottom">
-        <p class="cb-def rv" data-en="<b>chok chok</b> <i>(n.)</i> A bilingual 360° communication and marketing agency, between New York and Santiago, bringing together strategy, content, influence and events."><b>chok chok</b> <i>(s.)</i> Agencia bilingüe de comunicación y marketing 360°, entre Nueva York y Santiago, que une estrategia, contenido, influencia y eventos.</p>
-        <h2 class="mix rv" data-en="<span class='it'>Over 10 years</span> <span class='caps'>making magic</span>"><span class="it">Más de 10 años</span> <span class="caps">haciendo magia</span></h2>
-      </div>
-      <span class="cb-credit">Coniglio, 2026</span>
-    </div>
-  </section>
-  <script>(()=>{const v=document.querySelector(".cb-video");if(!v)return;const m=matchMedia("(max-width:700px)");
-    const set=()=>{const t=m.matches,s=t?v.dataset.tall:v.dataset.wide;v.poster=t?v.dataset.pt:v.dataset.pw;if(v.getAttribute("src")!==s)v.src=s};
-    set();m.addEventListener("change",set);
-    if(matchMedia("(prefers-reduced-motion:reduce)").matches){v.removeAttribute("autoplay");v.pause()}
-    else{let vis=true;const go=()=>{if(vis)v.play().catch(()=>{})};v.addEventListener("canplay",go);v.addEventListener("loadeddata",go);
-      if("IntersectionObserver" in window){new IntersectionObserver(([e])=>{vis=e.isIntersecting;vis?go():v.pause()},{threshold:.15}).observe(v.parentNode)}}})();</script>
 
   <!-- HOW WE WORK: fotos + panel (orden "Our Mission") -->
   <section class="cmission" id="como-trabajamos">

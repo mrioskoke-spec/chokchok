@@ -6,7 +6,7 @@
 <meta property="og:title" content="Chok Chok Social">
 <meta property="og:description" content="Agencia de comunicación y marketing digital 360°, bilingüe, entre Nueva York y Santiago.">
 <meta property="og:image" content="../img/b-hero-wide.jpg">
-<meta name="cc-version" content="20261121113629">
+<meta name="cc-version" content="20261121113917">
 <script>
 (function(){
   var mine=document.querySelector('meta[name="cc-version"]').content,busy=false;
@@ -1171,6 +1171,17 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
 .chero{touch-action:pan-y;user-select:none;-webkit-user-select:none}
 .chero .slide{cursor:grab}
 @media(max-width:700px){.hero-arrow{width:34px}.hero-arrow svg{width:12px;height:32px}}
+
+/* servicios: cada fila se pinta del tono del resaltado al pasar el mouse */
+#servicios.csvc .svc-item>button{padding:24px 20px;transition:background .45s var(--ease)}
+#servicios.csvc .svc-body .inner{padding-inline:20px}
+@media (hover:hover){#servicios.csvc .svc-item>button:hover{background:#D4B89F}}
+#servicios.csvc .svc-item>button:active{background:#D4B89F}
+#servicios.csvc .svc-item.open>button{background:#D4B89F}
+#servicios.csvc .svc-item>button:hover h3,#servicios.csvc .svc-item.open h3{color:var(--ink)}
+#servicios.csvc .svc-item>button:hover .plus{border-color:var(--ink)}
+#servicios.csvc .svc-item.open .plus{background:var(--espresso);border-color:var(--espresso)}
+#servicios.csvc .svc-item.open .plus::before,#servicios.csvc .svc-item.open .plus::after{background:#FBF8F2}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 </head>

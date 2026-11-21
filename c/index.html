@@ -6,7 +6,7 @@
 <meta property="og:title" content="Chok Chok Social">
 <meta property="og:description" content="Agencia de comunicación y marketing digital 360°, bilingüe, entre Nueva York y Santiago.">
 <meta property="og:image" content="../img/b-hero-wide.jpg">
-<meta name="cc-version" content="20261121114155">
+<meta name="cc-version" content="20261121114402">
 <script>
 (function(){
   var mine=document.querySelector('meta[name="cc-version"]').content,busy=false;
@@ -1241,13 +1241,14 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
   const mq=matchMedia("(max-width:700px)"),still=matchMedia("(prefers-reduced-motion:reduce)").matches;
   const setSrc=()=>{if(!v)return;const t=mq.matches,src=t?v.dataset.tall:v.dataset.wide;v.poster=t?v.dataset.pt:v.dataset.pw;if(v.getAttribute("src")!==src)v.src=src};
   setSrc();mq.addEventListener("change",setSrc);
-  let cur=0,timer=null,vis=true;const DUR=7000;
+  let cur=0,timer=null,vis=true,hov=false;const DUR=[7000,14000];
   const syncVideo=()=>{if(!v)return;if(cur===1&&vis&&!still){v.play().catch(()=>{})}else v.pause()};
   const show=i=>{cur=(i+slides.length)%slides.length;
     slides.forEach((s,k)=>{s.classList.toggle("is-on",k===cur);s.setAttribute("aria-hidden",k!==cur)});
     tabs.forEach((t,k)=>{t.setAttribute("aria-selected",k===cur);t.classList.remove("run");if(k===cur){void t.offsetWidth;if(!still)t.classList.add("run")}});
     syncVideo();restart()};
-  const restart=()=>{clearTimeout(timer);if(!still&&vis&&!document.hidden)timer=setTimeout(()=>show(cur+1),DUR)};
+  const restart=()=>{clearTimeout(timer);if(!still&&vis&&!hov&&!document.hidden)timer=setTimeout(()=>show(cur+1),DUR[cur]||7000)};
+  h.addEventListener("mouseenter",()=>{hov=true;clearTimeout(timer)});h.addEventListener("mouseleave",()=>{hov=false;restart()});
   tabs.forEach((t,k)=>t.addEventListener("click",()=>show(k)));
   h.querySelectorAll(".hero-arrow").forEach(b=>b.addEventListener("click",()=>show(cur+(+b.dataset.step))));
   let px=null;h.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse"||e.target.closest("a,button"))return;px=e.clientX});
@@ -1404,7 +1405,7 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
     <div class="wrap">
       <div class="sec-head">
         <span class="kicker rv" data-en="About us">Nosotras</span>
-        <h2 class="mix rv" data-en="<span class='it'>Girls making</span> <span class='caps'>magic</span>"><span class="it">Mujeres haciendo</span> <span class="caps">magia</span></h2>
+        <h2 class="mix rv"><span class="it">Girls making</span> <span class="caps">magic</span></h2>
         <p class="rv" data-en="Founded by Trinidad Id, Chok Chok Social is a multidisciplinary team of women specialised in communication, content, production and digital strategy, working between New York and Santiago.">Fundada por Trinidad Id, Chok Chok Social es un equipo multidisciplinario de mujeres especialistas en comunicación, contenido, producción y estrategia digital, entre Nueva York y Santiago.</p>
       </div>
       <div class="team" id="team"></div>
@@ -1643,7 +1644,7 @@ document.addEventListener("click",e=>{const b=e.target.closest("[data-reel]");if
 
 /* team */
 function renderTeam(){$("#team").innerHTML=TEAM.map(([k,n,r])=>`<article class="person rv"><div class="ph"><img src="../img/team-${k}.jpg" alt="${n}" loading="lazy"></div><div><b>${n}</b><span>${r[lang]}</span></div></article>`).join("")
-  +`<a class="person rv join" href="#contacto"><div class="ph"><img src="../img/a048-228.jpg" alt="" loading="lazy"></div><div><b class="it" style="font-size:1.4rem">${lang==="en"?"Girls making magic":"Chicas haciendo magia"}</b><span>${lang==="en"?"New York, Santiago":"Nueva York, Santiago"}</span></div></a>`}
+  +`<a class="person rv join" href="#contacto"><div class="ph"><img src="../img/a048-228.jpg" alt="" loading="lazy"></div><div><b class="it" style="font-size:1.4rem">Girls making magic</b><span>${lang==="en"?"New York, Santiago":"Nueva York, Santiago"}</span></div></a>`}
 
 /* modal */
 const dlg=$("#modal"),mStrip=$("#m-strip");let cur=-1,lastFocus=null;

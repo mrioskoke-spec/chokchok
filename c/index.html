@@ -6,7 +6,7 @@
 <meta property="og:title" content="Chok Chok Social">
 <meta property="og:description" content="Agencia de comunicación y marketing digital 360°, bilingüe, entre Nueva York y Santiago.">
 <meta property="og:image" content="../img/b-hero-wide.jpg">
-<meta name="cc-version" content="20261121112343">
+<meta name="cc-version" content="20261121112651">
 <script>
 (function(){
   var mine=document.querySelector('meta[name="cc-version"]').content,busy=false;
@@ -1098,6 +1098,30 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
 .cbrands .kicker{color:var(--ink)}
 .b-logo{background:var(--m) center/contain no-repeat;-webkit-mask:none;mask:none}
 .b-word{color:#1A1A1A}
+
+/* ---------- banner de video (Coniglio) ---------- */
+.cbanner{position:relative;margin-top:clamp(56px,7vw,100px);min-height:min(86svh,52vw);color:#FBF8F2;overflow:hidden;isolation:isolate;background:#1d1714;display:flex}
+.cb-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.cbanner::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+  background:linear-gradient(90deg,rgba(24,14,10,.62) 0%,rgba(24,14,10,.25) 45%,rgba(24,14,10,.05) 70%),linear-gradient(0deg,rgba(24,14,10,.6) 0%,transparent 45%)}
+.cb-in{position:relative;flex:1;display:grid;grid-template-rows:1fr auto;padding-block:clamp(40px,5vw,72px)}
+.cb-hand{align-self:center;justify-self:start;font-family:var(--hand);font-size:clamp(5rem,11vw,10.5rem);line-height:.8;transform:rotate(-8deg);
+  margin-left:clamp(0px,2vw,30px);text-shadow:0 4px 40px rgba(0,0,0,.35);white-space:nowrap}
+.cb-bottom{display:grid;gap:14px;max-width:640px}
+.cb-def{font-size:.98rem;line-height:1.55;color:rgba(251,248,242,.9);max-width:52ch}
+.cb-def b{font-family:var(--serif);font-weight:400;font-size:1.35rem;letter-spacing:.01em}
+.cb-def i{font-family:var(--serif);color:var(--sand)}
+.cbanner h2.mix{font-size:clamp(2.6rem,5.6vw,5rem);line-height:.95}
+.cbanner h2 .it{color:var(--sand)}
+.cb-credit{position:absolute;right:clamp(16px,3vw,40px);bottom:clamp(18px,2.4vw,30px);font-size:.64rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:rgba(251,248,242,.75)}
+@media(max-width:700px){
+  .cbanner{min-height:92svh}
+  .cbanner::after{background:linear-gradient(0deg,rgba(24,14,10,.78) 0%,rgba(24,14,10,.25) 55%,rgba(24,14,10,.35) 100%)}
+  .cb-in{grid-template-rows:auto 1fr auto}
+  .cb-hand{align-self:start;font-size:5.2rem;margin-top:10px}
+  .cb-bottom{grid-row:3}
+  .cb-credit{top:20px;bottom:auto}
+}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 </head>
@@ -1238,6 +1262,27 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
       <button class="cs-arrow next" type="button" aria-label="Siguiente"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor"><path d="M6 3l5 5-5 5"/></svg></button>
     </div>
   </section>
+
+  <!-- BANNER DE VIDEO -->
+  <section class="cbanner" aria-label="Chok Chok Social">
+    <video class="cb-video" muted loop playsinline autoplay preload="metadata" aria-hidden="true"
+      poster="../video/coniglio-banner.jpg" data-wide="../video/coniglio-banner.mp4" data-tall="../video/coniglio-banner-v.mp4"
+      data-pw="../video/coniglio-banner.jpg" data-pt="../video/coniglio-banner-v.jpg"></video>
+    <div class="wrap cb-in">
+      <span class="cb-hand" aria-hidden="true">Chok Chok</span>
+      <div class="cb-bottom">
+        <p class="cb-def rv" data-en="<b>chok chok</b> <i>(n.)</i> A bilingual 360° communication and marketing agency, between New York and Santiago, bringing together strategy, content, influence and events."><b>chok chok</b> <i>(s.)</i> Agencia bilingüe de comunicación y marketing 360°, entre Nueva York y Santiago, que une estrategia, contenido, influencia y eventos.</p>
+        <h2 class="mix rv" data-en="<span class='it'>Over 10 years</span> <span class='caps'>making magic</span>"><span class="it">Más de 10 años</span> <span class="caps">haciendo magia</span></h2>
+      </div>
+      <span class="cb-credit">Coniglio, 2026</span>
+    </div>
+  </section>
+  <script>(()=>{const v=document.querySelector(".cb-video");if(!v)return;const m=matchMedia("(max-width:700px)");
+    const set=()=>{const t=m.matches,s=t?v.dataset.tall:v.dataset.wide;v.poster=t?v.dataset.pt:v.dataset.pw;if(v.getAttribute("src")!==s)v.src=s};
+    set();m.addEventListener("change",set);
+    if(matchMedia("(prefers-reduced-motion:reduce)").matches){v.removeAttribute("autoplay");v.pause()}
+    else{let vis=true;const go=()=>{if(vis)v.play().catch(()=>{})};v.addEventListener("canplay",go);v.addEventListener("loadeddata",go);
+      if("IntersectionObserver" in window){new IntersectionObserver(([e])=>{vis=e.isIntersecting;vis?go():v.pause()},{threshold:.15}).observe(v.parentNode)}}})();</script>
 
   <!-- HOW WE WORK: fotos + panel (orden "Our Mission") -->
   <section class="cmission" id="como-trabajamos">

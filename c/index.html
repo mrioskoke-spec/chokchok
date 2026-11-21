@@ -6,7 +6,7 @@
 <meta property="og:title" content="Chok Chok Social">
 <meta property="og:description" content="Agencia de comunicación y marketing digital 360°, bilingüe, entre Nueva York y Santiago.">
 <meta property="og:image" content="../img/b-hero-wide.jpg">
-<meta name="cc-version" content="20261121113250">
+<meta name="cc-version" content="20261121113629">
 <script>
 (function(){
   var mine=document.querySelector('meta[name="cc-version"]').content,busy=false;
@@ -1162,6 +1162,15 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
 .chero .cb-hand small{font-family:var(--sans);font-size:.13em;font-weight:500;letter-spacing:.5em;text-transform:uppercase;margin:.35em .1em 0 0;transform:rotate(8deg);transform-origin:right}
 .chero .cb-def{font-family:var(--serif);font-size:clamp(1.5rem,2.3vw,2.1rem);line-height:1.2;color:#FBF8F2;max-width:30ch}
 @media(max-width:700px){.chero .cb-def{font-size:1.35rem}}
+/* flechas finas a los lados del carrusel */
+.hero-arrow{position:absolute;top:50%;z-index:6;width:44px;height:84px;margin-top:-42px;display:grid;place-items:center;color:#FBF8F2;opacity:.75;transition:opacity .3s,transform .4s var(--ease)}
+.hero-arrow svg{width:16px;height:40px;stroke-width:1.6;filter:drop-shadow(0 1px 6px rgba(0,0,0,.35))}
+.hero-arrow.prev{left:clamp(6px,1.6vw,22px)}.hero-arrow.next{right:clamp(6px,1.6vw,22px)}
+.hero-arrow:hover{opacity:1}.hero-arrow.prev:hover{transform:translateX(-3px)}.hero-arrow.next:hover{transform:translateX(3px)}
+.hero-arrow:focus-visible{outline-color:#FBF8F2;opacity:1}
+.chero{touch-action:pan-y;user-select:none;-webkit-user-select:none}
+.chero .slide{cursor:grab}
+@media(max-width:700px){.hero-arrow{width:34px}.hero-arrow svg{width:12px;height:32px}}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 </head>
@@ -1200,8 +1209,8 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
 </div>
   <div class="slide cbanner" data-i="1" aria-hidden="true">
     <video class="cb-video" muted loop playsinline preload="none" aria-hidden="true"
-      poster="../video/coniglio-banner.jpg" data-wide="../video/coniglio-banner.mp4" data-tall="../video/coniglio-banner-v.mp4"
-      data-pw="../video/coniglio-banner.jpg" data-pt="../video/coniglio-banner-v.jpg"></video>
+      poster="../video/coniglio-banner2.jpg" data-wide="../video/coniglio-banner2.mp4" data-tall="../video/coniglio-banner2-v.mp4"
+      data-pw="../video/coniglio-banner2.jpg" data-pt="../video/coniglio-banner2-v.jpg"></video>
     <div class="wrap cb-in">
       <span class="cb-hand" aria-hidden="true">Chok Chok<small>social</small></span>
       <div class="cb-bottom">
@@ -1212,10 +1221,8 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
       <span class="cb-credit">Coniglio, 2026</span>
     </div>
   </div>
-  <div class="hero-nav" role="tablist" aria-label="Banners de portada">
-    <button type="button" role="tab" data-go="0" aria-selected="true"><span>01</span><i></i></button>
-    <button type="button" role="tab" data-go="1" aria-selected="false"><span>02</span><i></i></button>
-  </div>
+  <button class="hero-arrow prev" type="button" data-step="-1" aria-label="Banner anterior"><svg viewBox="0 0 20 48" fill="none" stroke="currentColor"><path d="M16 4L4 24l12 20"/></svg></button>
+  <button class="hero-arrow next" type="button" data-step="1" aria-label="Banner siguiente"><svg viewBox="0 0 20 48" fill="none" stroke="currentColor"><path d="M4 4l12 20L4 44"/></svg></button>
 </section>
 <script>(()=>{
   const h=document.querySelector(".chero");if(!h)return;
@@ -1231,6 +1238,10 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
     syncVideo();restart()};
   const restart=()=>{clearTimeout(timer);if(!still&&vis&&!document.hidden)timer=setTimeout(()=>show(cur+1),DUR)};
   tabs.forEach((t,k)=>t.addEventListener("click",()=>show(k)));
+  h.querySelectorAll(".hero-arrow").forEach(b=>b.addEventListener("click",()=>show(cur+(+b.dataset.step))));
+  let px=null;h.addEventListener("pointerdown",e=>{if(e.pointerType!=="mouse"||e.target.closest("a,button"))return;px=e.clientX});
+  addEventListener("pointerup",e=>{if(px===null)return;const dx=e.clientX-px;px=null;if(Math.abs(dx)>60)show(cur+(dx<0?1:-1))});
+  let wl=0;h.addEventListener("wheel",e=>{if(Math.abs(e.deltaX)<=Math.abs(e.deltaY)||Math.abs(e.deltaX)<25)return;e.preventDefault();const n=Date.now();if(n-wl<900)return;wl=n;show(cur+(e.deltaX>0?1:-1))},{passive:false});
   if(v){v.addEventListener("canplay",syncVideo)}
   let x0=null;h.addEventListener("touchstart",e=>{x0=e.touches[0].clientX},{passive:true});
   h.addEventListener("touchend",e=>{if(x0===null)return;const dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>50)show(cur+(dx<0?1:-1));x0=null});

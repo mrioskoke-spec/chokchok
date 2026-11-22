@@ -6,7 +6,7 @@
 <meta property="og:title" content="Chok Chok Social">
 <meta property="og:description" content="Agencia de comunicación y marketing digital 360°, bilingüe, entre Nueva York y Santiago.">
 <meta property="og:image" content="../img/b-hero-wide.jpg">
-<meta name="cc-version" content="20261122125157">
+<meta name="cc-version" content="20261122130020">
 <script>
 (function(){
   var mine=document.querySelector('meta[name="cc-version"]').content,busy=false;
@@ -1198,6 +1198,8 @@ body.is-port .ctop .nav a[href="#portafolio"]::after{transform:scaleX(1)}
 .chero .cb-bottom{gap:2px;align-self:end;align-content:end}
 .chero .cb-bottom .cb-hand{display:block;justify-self:start;align-self:auto;margin:0 0 0 -.04em;font-size:clamp(3.6rem,6.2vw,5.8rem);line-height:.95;transform:rotate(-4deg);transform-origin:left bottom}
 @media(max-width:700px){.chero .cb-bottom .cb-hand{font-size:3.6rem;margin-top:0}}
+/* equipo: círculo con iniciales mientras no hay foto */
+.person .ph-ini{display:grid;place-items:center;width:100%;aspect-ratio:1;border-radius:50%;background:var(--sand);color:var(--espresso);font-family:var(--serif);font-size:clamp(2.4rem,4vw,3.4rem);letter-spacing:.04em}
 </style>
 <style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}</style>
 </head>
@@ -1551,7 +1553,7 @@ const SERV=[
  {t:{es:"Contenido pagado",en:"Paid content"},area:"acc",img:"../img/a005-007.jpg",cap:"Chok Chok Social",es:"Contenido pensado para performance y amplificación en medios pagados.",en:"Content built for performance and paid amplification.",tags:{es:["Meta Ads","Performance","Amplificación"],en:["Meta Ads","Performance","Amplification"]}},
  {t:{es:"Rebranding",en:"Re-branding"},area:"acc",img:"../img/a004-006.jpg",cap:"Chok Chok Social",es:"Redefinición de identidad y ajustes estratégicos de marca.",en:"Identity redefinition and strategic brand adjustments.",tags:{es:["Identidad","Posicionamiento","Tono"],en:["Identity","Positioning","Tone"]}}];
 
-const TEAM=[["trinidad-bn","Trinidad Id",{es:"Fundadora y directora de marketing",en:"Founder & Marketing Director"}],["gala","Gala Germain",{es:"Directora senior de cuentas",en:"Senior Account Director"}],["pilar","Pilar Undurraga",{es:"Directora de producción y eventos",en:"Production & Events Director"}],["anais","Anais Johnson",{es:"Estratega de diseño para redes sociales",en:"Social Media Design Strategist"}],["valentina","Valentina Puchi",{es:"Coordinadora de contenido digital y creadores",en:"Digital Content & Creators Coordinator"}],["magdalena-bn","Magdalena Rios",{es:"Estratega de diseño para redes sociales",en:"Social Media Design Strategist"}],["mariajesus-bn","María Jesús Olivares",{es:"Coordinadora de producción",en:"Production Coordinator"}]];
+const TEAM=[["trinidad-bn","Trinidad Id",{es:"Fundadora y directora de marketing",en:"Founder and Marketing Director"}],["gala","Gala Germain",{es:"Directora senior de cuentas",en:"Senior Account Director"}],["pilar","Pilar Undurraga",{es:"Directora de producción y eventos",en:"Production and Events Director"}],["anais","Anais Johnson",{es:"Estratega de diseño para redes sociales",en:"Social Media Design Strategist"}],["valentina","Valentina Puchi",{es:"Coordinadora de contenido digital y creadores",en:"Digital Content and Creators Coordinator"}],["magdalena-bn","Magdalena Rios",{es:"Estratega de diseño para redes sociales",en:"Social Media Design Strategist"}],["mariajesus-bn","María Jesús Olivares",{es:"Coordinadora de producción",en:"Production Coordinator"}],["","Maca",{es:"Coordinadora de operaciones",en:"Operations Coordinator"}],["","Josefa Escobar",{es:"Asistente de producción de eventos y contenidos",en:"Event and Content Production Assistant"}]];
 
 const T={es:{all:"Todo",open:"Ver caso",of:"de",prevCase:"← Anterior",nextCase:"Siguiente →",creators:"Creadoras",copied:"Copiado",copyIt:"Copiar",openWa:"Abrir chat",dm:"Envíanos un mensaje",watch:"Ver con sonido",more:n=>`Ver los ${n} proyectos`,onIG:"Ver en Instagram",viewWork:"Ver trabajos",menuOpen:"Abrir menú"},
          en:{all:"All",open:"Open case",of:"of",prevCase:"← Previous",nextCase:"Next →",creators:"Creators",copied:"Copied",copyIt:"Copy",openWa:"Open chat",dm:"Send us a message",watch:"Watch with sound",more:n=>`See all ${n} projects`,onIG:"View on Instagram",viewWork:"See the work",menuOpen:"Open menu"}};
@@ -1660,7 +1662,7 @@ function renderReels(){
 document.addEventListener("click",e=>{const b=e.target.closest("[data-reel]");if(b)openReel(+b.dataset.reel,b)});
 
 /* team */
-function renderTeam(){$("#team").innerHTML=TEAM.map(([k,n,r])=>`<article class="person rv"><div class="ph"><img src="../img/team-${k}.jpg" alt="${n}" loading="lazy"></div><div><b>${n}</b><span>${r[lang]}</span></div></article>`).join("")
+function renderTeam(){$("#team").innerHTML=TEAM.map(([k,n,r])=>`<article class="person rv"><div class="ph">${k?`<img src="../img/team-${k}.jpg" alt="${n}" loading="lazy">`:`<span class="ph-ini" role="img" aria-label="${n}">${n.split(" ").map(w=>w[0]).join("").slice(0,2)}</span>`}</div><div><b>${n}</b><span>${r[lang]}</span></div></article>`).join("")
   +`<a class="person rv join" href="#contacto"><div class="ph"><img src="../img/a048-228.jpg" alt="" loading="lazy"></div><div><b class="it" style="font-size:1.4rem">Girls making magic</b><span>${lang==="en"?"New York, Santiago":"Nueva York, Santiago"}</span></div></a>`}
 
 /* modal */
